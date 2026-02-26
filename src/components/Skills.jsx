@@ -1,76 +1,61 @@
-const skillGroups = [
-  {
-    category: 'Tax Software',
-    items: ['CCH Axcess', 'CCH ProSystem fx', 'BNA Income Tax Planner', 'SurePrep', 'GoSystems', 'ProFx', 'Caseware', 'iChannel'],
-  },
-  {
-    category: 'Technical',
-    items: ['Microsoft Excel', 'Microsoft Word', 'Microsoft Office Suite', 'Financial Data Analysis', 'Tax Return Preparation', 'IRS Documentation'],
-  },
-  {
-    category: 'Tax Expertise',
-    items: ['Form 1040 (Individual)', 'Form 1120 (C-Corp)', 'Form 1120S (S-Corp)', 'Form 1065 (Partnership)', 'Tax Extensions', 'State & Federal Compliance'],
-  },
-  {
-    category: 'Professional',
-    items: ['Client Communication', 'Team Leadership', 'Hybrid Work', 'Attention to Detail', 'Analytical Thinking', 'Fast-Paced Environments'],
-  },
+const groups = [
+  { cat: 'Tax Software', color: '#C9A84C', items: ['CCH Axcess', 'CCH ProSystem fx', 'BNA Income Tax Planner', 'SurePrep', 'GoSystems', 'ProFx', 'Caseware', 'iChannel'] },
+  { cat: 'Tax Expertise', color: '#6ea8f0', items: ['Form 1040', 'Form 1120 / 1120S', 'Form 1065', 'Tax Extensions', 'State Compliance', 'Federal Compliance', 'IRS Research'] },
+  { cat: 'Technical', color: '#8bc96a', items: ['Microsoft Excel', 'Microsoft Word', 'Financial Analysis', 'Data Review', 'Office Suite'] },
+  { cat: 'Professional', color: '#c96a8b', items: ['Client Communication', 'Team Leadership', 'Hybrid Work', 'Analytical Thinking', 'Attention to Detail', 'Fast-Paced Environments'] },
 ]
 
 export default function Skills() {
   return (
-    <section id="skills" style={{ padding: '120px 0', background: '#080d1a' }}>
-      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 64px' }}>
+    <section id="skills" style={{ padding: '120px 0', background: '#080d1a', position: 'relative', overflow: 'hidden' }}>
 
-        <div className="reveal" style={{ marginBottom: '72px' }}>
+      {/* Scrolling skill marquee in background */}
+      <div style={{ position: 'absolute', top: '20%', left: 0, right: 0, overflow: 'hidden', opacity: 0.035, pointerEvents: 'none', userSelect: 'none' }}>
+        <div style={{ display: 'flex', whiteSpace: 'nowrap' }} className="animate-marquee-slow">
+          {[...Array(3)].map((_, i) => (
+            <span key={i} style={{ fontFamily: "'Bebas Neue', cursive", fontSize: 120, letterSpacing: 8, color: '#C9A84C' }}>
+              CCH · EXCEL · TAX · CPA · 1040 · 1120 · RESEARCH · COMPLIANCE ·&nbsp;
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 64px', position: 'relative' }}>
+
+        <div className="reveal" style={{ marginBottom: 72 }}>
           <span className="section-tag">Capabilities</span>
-          <div style={{ width: '40px', height: '2px', background: '#C9A84C', margin: '16px 0 24px' }} />
-          <h2 style={{
-            fontFamily: "'Bebas Neue', cursive",
-            fontSize: 'clamp(48px, 6vw, 80px)',
-            lineHeight: '1',
-            letterSpacing: '1px',
-            color: '#ffffff',
-          }}>
-            Skills &<br /><span className="gold-text">Expertise</span>
+          <div style={{ width: 36, height: 2, background: '#C9A84C', margin: '14px 0 20px' }} />
+          <h2 style={{ fontFamily: "'Bebas Neue', cursive", fontSize: 'clamp(48px, 6vw, 80px)', lineHeight: 1, color: '#fff' }}>
+            Skills & <span className="gold-text">Expertise</span>
           </h2>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '24px' }}>
-          {skillGroups.map((group, i) => (
-            <div
-              key={i}
-              className="reveal card-hover"
-              style={{
-                background: '#111827',
-                border: '1px solid rgba(255,255,255,0.06)',
-                padding: '36px',
-                transition: 'border-color 0.3s ease',
-              }}
-              onMouseEnter={e => e.currentTarget.style.borderColor = 'rgba(201,168,76,0.25)'}
-              onMouseLeave={e => e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)'}
-            >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '24px' }}>
-                <div style={{ width: '3px', height: '20px', background: '#C9A84C' }} />
-                <h3 style={{ fontSize: '11px', fontWeight: '700', letterSpacing: '3px', textTransform: 'uppercase', color: '#C9A84C' }}>
-                  {group.category}
-                </h3>
+        {/* Skill clouds — one per category */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 40 }}>
+          {groups.map((g) => (
+            <div key={g.cat} className="reveal">
+              <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 18 }}>
+                <div style={{ width: 12, height: 12, borderRadius: '50%', background: g.color, flexShrink: 0 }} />
+                <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: 4, textTransform: 'uppercase', color: g.color }}>{g.cat}</span>
+                <div style={{ flex: 1, height: 1, background: `linear-gradient(90deg, ${g.color}30, transparent)` }} />
               </div>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-                {group.items.map((skill) => (
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
+                {g.items.map(skill => (
                   <span
                     key={skill}
                     style={{
-                      fontSize: '12px',
-                      color: 'rgba(255,255,255,0.7)',
-                      background: 'rgba(255,255,255,0.05)',
-                      border: '1px solid rgba(255,255,255,0.08)',
-                      padding: '6px 14px',
-                      transition: 'all 0.2s ease',
+                      fontSize: 13,
+                      color: 'rgba(255,255,255,0.65)',
+                      padding: '8px 18px',
+                      borderRadius: 40,
+                      background: 'rgba(255,255,255,0.04)',
+                      border: `1px solid rgba(255,255,255,0.07)`,
                       cursor: 'default',
+                      transition: 'all 0.25s ease',
+                      display: 'inline-block',
                     }}
-                    onMouseEnter={e => { e.target.style.background = 'rgba(201,168,76,0.1)'; e.target.style.borderColor = 'rgba(201,168,76,0.3)'; e.target.style.color = '#C9A84C' }}
-                    onMouseLeave={e => { e.target.style.background = 'rgba(255,255,255,0.05)'; e.target.style.borderColor = 'rgba(255,255,255,0.08)'; e.target.style.color = 'rgba(255,255,255,0.7)' }}
+                    onMouseEnter={e => { e.target.style.background = `${g.color}18`; e.target.style.borderColor = `${g.color}60`; e.target.style.color = g.color; e.target.style.transform = 'translateY(-2px)' }}
+                    onMouseLeave={e => { e.target.style.background = 'rgba(255,255,255,0.04)'; e.target.style.borderColor = 'rgba(255,255,255,0.07)'; e.target.style.color = 'rgba(255,255,255,0.65)'; e.target.style.transform = 'translateY(0)' }}
                   >
                     {skill}
                   </span>
@@ -81,16 +66,7 @@ export default function Skills() {
         </div>
       </div>
 
-      <style>{`
-        @media (max-width: 800px) {
-          #skills > div > div:last-child {
-            grid-template-columns: 1fr !important;
-          }
-        }
-        @media (max-width: 600px) {
-          #skills > div { padding: 0 24px !important; }
-        }
-      `}</style>
+      <style>{`@media (max-width: 600px) { #skills > div { padding: 0 24px !important; } }`}</style>
     </section>
   )
 }

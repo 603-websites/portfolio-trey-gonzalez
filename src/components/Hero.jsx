@@ -1,198 +1,134 @@
+import { useState, useEffect } from 'react'
+
+const cyclingWords = [
+  'TAX ASSOCIATE',
+  'CPA CANDIDATE',
+  'TEAM CAPTAIN',
+  'MERRIMACK WARRIOR',
+  'DIVISION I ATHLETE',
+  'FUTURE CPA',
+  'ACCOUNTING PROFESSIONAL',
+  'PROBLEM SOLVER',
+]
+
 export default function Hero() {
-  const marqueeText = 'TAX ASSOCIATE · CPA CANDIDATE · MERRIMACK COLLEGE · PKF O\'CONNOR DAVIES · CROSS COUNTRY · TRACK & FIELD · '
+  const [wordIndex, setWordIndex] = useState(0)
+  const [visible, setVisible] = useState(true)
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setVisible(false)
+      setTimeout(() => {
+        setWordIndex((i) => (i + 1) % cyclingWords.length)
+        setVisible(true)
+      }, 400)
+    }, 2800)
+    return () => clearInterval(interval)
+  }, [])
+
+  const marquee = 'TAX ASSOCIATE · CPA CANDIDATE · MERRIMACK COLLEGE · PKF O\'CONNOR DAVIES · CROSS COUNTRY · TRACK & FIELD · WINDHAM NH · '
 
   return (
-    <section
-      id="hero"
-      style={{
-        minHeight: '100vh',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        position: 'relative',
-        overflow: 'hidden',
-      }}
-    >
-      {/* Background photo with overlay */}
-      <div style={{
-        position: 'absolute',
-        inset: 0,
-        backgroundImage: 'url(/trey-running-2.jpeg)',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center 30%',
-        filter: 'grayscale(20%)',
-      }} />
-      <div style={{
-        position: 'absolute',
-        inset: 0,
-        background: 'linear-gradient(135deg, rgba(10,15,30,0.92) 0%, rgba(10,15,30,0.75) 50%, rgba(10,15,30,0.85) 100%)',
-      }} />
+    <section id="hero" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', position: 'relative', overflow: 'hidden' }}>
 
-      {/* Gold accent line left */}
-      <div style={{
-        position: 'absolute',
-        top: 0,
-        bottom: 0,
-        left: '32px',
-        width: '1px',
-        background: 'linear-gradient(to bottom, transparent, rgba(201,168,76,0.4), transparent)',
-      }} />
+      {/* Background photo */}
+      <div style={{ position: 'absolute', inset: 0, backgroundImage: 'url(/trey-running-2.jpeg)', backgroundSize: 'cover', backgroundPosition: 'center 30%' }} />
+      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(110deg, rgba(10,15,30,0.96) 0%, rgba(10,15,30,0.78) 55%, rgba(10,15,30,0.88) 100%)' }} />
 
-      {/* Content */}
-      <div style={{
-        position: 'relative',
-        zIndex: 1,
-        maxWidth: '1200px',
-        margin: '0 auto',
-        padding: '0 64px',
-        width: '100%',
-      }}>
-        <div style={{ animation: 'fadeInUp 1s ease forwards', opacity: 0 }}>
-          <span className="section-tag" style={{ marginBottom: '24px', display: 'block' }}>
-            Tax Associate · PKF O'Connor Davies
+      {/* Floating orbs */}
+      <div className="orb" style={{ width: 600, height: 600, background: '#C9A84C', top: '-200px', right: '-100px' }} />
+      <div className="orb" style={{ width: 400, height: 400, background: '#1a4a8a', bottom: '100px', left: '-100px' }} />
+
+      {/* Left accent line */}
+      <div style={{ position: 'absolute', top: 0, bottom: 0, left: 32, width: 1, background: 'linear-gradient(to bottom, transparent 0%, rgba(201,168,76,0.4) 50%, transparent 100%)' }} />
+
+      {/* Main content */}
+      <div style={{ position: 'relative', zIndex: 1, maxWidth: 1200, margin: '0 auto', padding: '0 64px', width: '100%' }}>
+        {/* Label */}
+        <div style={{ animation: 'fadeInUp 0.8s ease forwards', opacity: 0 }}>
+          <span className="section-tag" style={{ display: 'block', marginBottom: 28 }}>
+            Tax Associate · PKF O'Connor Davies, LLP
           </span>
         </div>
 
-        <div style={{ animation: 'fadeInUp 1s ease 0.15s forwards', opacity: 0 }}>
-          <h1 style={{
-            fontFamily: "'Bebas Neue', cursive",
-            fontSize: 'clamp(72px, 12vw, 160px)',
-            lineHeight: '0.9',
-            letterSpacing: '-2px',
-            color: '#ffffff',
-            marginBottom: '8px',
-          }}>
+        {/* TREY */}
+        <div style={{ animation: 'fadeInUp 0.8s ease 0.1s forwards', opacity: 0 }}>
+          <div style={{ fontFamily: "'Bebas Neue', cursive", fontSize: 'clamp(80px, 13vw, 172px)', lineHeight: 0.88, letterSpacing: '-3px', color: '#ffffff' }}>
             TREY
-          </h1>
-          <h1 style={{
-            fontFamily: "'Bebas Neue', cursive",
-            fontSize: 'clamp(72px, 12vw, 160px)',
-            lineHeight: '0.9',
-            letterSpacing: '-2px',
-            color: 'transparent',
-            WebkitTextStroke: '1px rgba(255,255,255,0.3)',
-            marginBottom: '32px',
-          }}>
+          </div>
+        </div>
+
+        {/* Cycling word row */}
+        <div style={{ animation: 'fadeInUp 0.8s ease 0.2s forwards', opacity: 0, height: 'clamp(32px, 4vw, 56px)', display: 'flex', alignItems: 'center', overflow: 'hidden', margin: '8px 0 4px', paddingLeft: 4 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+            <div style={{ width: 32, height: 1, background: '#C9A84C', flexShrink: 0 }} />
+            <span
+              key={wordIndex}
+              className="cycling-word"
+              style={{
+                fontFamily: "'Bebas Neue', cursive",
+                fontSize: 'clamp(20px, 2.5vw, 36px)',
+                letterSpacing: '6px',
+                color: '#C9A84C',
+                display: 'inline-block',
+                opacity: visible ? 1 : 0,
+                transition: 'opacity 0.4s ease',
+                whiteSpace: 'nowrap',
+              }}
+            >
+              {cyclingWords[wordIndex]}
+            </span>
+            <div style={{ width: 32, height: 1, background: 'rgba(201,168,76,0.3)', flexShrink: 0 }} />
+          </div>
+        </div>
+
+        {/* GONZALEZ */}
+        <div style={{ animation: 'fadeInUp 0.8s ease 0.3s forwards', opacity: 0 }}>
+          <div style={{ fontFamily: "'Bebas Neue', cursive", fontSize: 'clamp(80px, 13vw, 172px)', lineHeight: 0.88, letterSpacing: '-3px', color: 'transparent', WebkitTextStroke: '1.5px rgba(255,255,255,0.18)' }}>
             GONZALEZ
-          </h1>
+          </div>
         </div>
 
-        <div style={{ animation: 'fadeInUp 1s ease 0.3s forwards', opacity: 0, display: 'flex', alignItems: 'center', gap: '24px', flexWrap: 'wrap' }}>
-          <div style={{ width: '48px', height: '1px', background: '#C9A84C' }} />
-          <p style={{
-            fontSize: '15px',
-            fontWeight: '400',
-            color: 'rgba(255,255,255,0.7)',
-            letterSpacing: '1px',
-            maxWidth: '400px',
-            lineHeight: '1.7',
-          }}>
-            BBA Accounting · Merrimack College<br />
-            Division I Athlete · Future CPA
+        {/* Subline + CTAs */}
+        <div style={{ animation: 'fadeInUp 0.8s ease 0.45s forwards', opacity: 0, marginTop: 48 }}>
+          <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.5)', letterSpacing: 1, marginBottom: 32, maxWidth: 380, lineHeight: 1.8 }}>
+            BBA Accounting & Management · Merrimack College<br />
+            Windham, NH
           </p>
-        </div>
-
-        <div style={{ animation: 'fadeInUp 1s ease 0.45s forwards', opacity: 0, marginTop: '48px', display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
-          <a
-            href="#experience"
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '8px',
-              background: '#C9A84C',
-              color: '#0a0f1e',
-              padding: '14px 32px',
-              fontSize: '12px',
-              fontWeight: '700',
-              letterSpacing: '2px',
-              textTransform: 'uppercase',
-              textDecoration: 'none',
-              transition: 'all 0.3s ease',
-            }}
-            onMouseEnter={e => { e.target.style.background = '#e8c96a'; e.target.style.transform = 'translateY(-2px)' }}
-            onMouseLeave={e => { e.target.style.background = '#C9A84C'; e.target.style.transform = 'translateY(0)' }}
-          >
-            View Experience
-          </a>
-          <a
-            href="#contact"
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '8px',
-              border: '1px solid rgba(201,168,76,0.5)',
-              color: '#C9A84C',
-              padding: '14px 32px',
-              fontSize: '12px',
-              fontWeight: '700',
-              letterSpacing: '2px',
-              textTransform: 'uppercase',
-              textDecoration: 'none',
-              transition: 'all 0.3s ease',
-            }}
-            onMouseEnter={e => { e.target.style.borderColor = '#C9A84C'; e.target.style.background = 'rgba(201,168,76,0.1)' }}
-            onMouseLeave={e => { e.target.style.borderColor = 'rgba(201,168,76,0.5)'; e.target.style.background = 'transparent' }}
-          >
-            Get In Touch
-          </a>
+          <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
+            <a href="#highlights" style={{ display: 'inline-block', background: '#C9A84C', color: '#0a0f1e', padding: '14px 36px', fontSize: 11, fontWeight: 700, letterSpacing: '2.5px', textTransform: 'uppercase', textDecoration: 'none', transition: 'all 0.3s ease' }}
+              onMouseEnter={e => { e.target.style.background = '#f0d878'; e.target.style.transform = 'translateY(-3px)' }}
+              onMouseLeave={e => { e.target.style.background = '#C9A84C'; e.target.style.transform = 'translateY(0)' }}>
+              Explore Work
+            </a>
+            <a href="#contact" style={{ display: 'inline-block', border: '1px solid rgba(201,168,76,0.4)', color: '#C9A84C', padding: '14px 36px', fontSize: 11, fontWeight: 700, letterSpacing: '2.5px', textTransform: 'uppercase', textDecoration: 'none', transition: 'all 0.3s ease' }}
+              onMouseEnter={e => { e.target.style.background = 'rgba(201,168,76,0.1)'; e.target.style.borderColor = '#C9A84C' }}
+              onMouseLeave={e => { e.target.style.background = 'transparent'; e.target.style.borderColor = 'rgba(201,168,76,0.4)' }}>
+              Get In Touch
+            </a>
+          </div>
         </div>
       </div>
 
       {/* Scroll indicator */}
-      <div style={{
-        position: 'absolute',
-        bottom: '120px',
-        right: '48px',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        gap: '8px',
-        animation: 'fadeIn 1s ease 1s forwards',
-        opacity: 0,
-      }}>
-        <span style={{ fontSize: '10px', letterSpacing: '3px', color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', writingMode: 'vertical-rl' }}>Scroll</span>
-        <div style={{ width: '1px', height: '40px', background: 'linear-gradient(to bottom, rgba(201,168,76,0.6), transparent)' }} />
+      <div style={{ position: 'absolute', bottom: 100, right: 48, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8, animation: 'fadeIn 1s ease 1.2s forwards', opacity: 0 }}>
+        <span style={{ fontSize: 9, letterSpacing: 4, color: 'rgba(255,255,255,0.3)', textTransform: 'uppercase', writingMode: 'vertical-rl' }}>Scroll</span>
+        <div style={{ width: 1, height: 48, background: 'linear-gradient(to bottom, rgba(201,168,76,0.5), transparent)' }} />
       </div>
 
-      {/* Marquee strip */}
-      <div style={{
-        position: 'absolute',
-        bottom: 0,
-        left: 0,
-        right: 0,
-        overflow: 'hidden',
-        background: '#C9A84C',
-        padding: '10px 0',
-      }}>
+      {/* Gold marquee strip */}
+      <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, overflow: 'hidden', background: '#C9A84C', padding: '9px 0' }}>
         <div style={{ display: 'flex', whiteSpace: 'nowrap' }} className="animate-marquee">
-          {[...Array(4)].map((_, i) => (
-            <span key={i} style={{
-              fontSize: '11px',
-              fontWeight: '700',
-              letterSpacing: '3px',
-              color: '#0a0f1e',
-              paddingRight: '0',
-            }}>
-              {marqueeText}
-            </span>
+          {[...Array(6)].map((_, i) => (
+            <span key={i} style={{ fontSize: 10, fontWeight: 700, letterSpacing: '3px', color: '#0a0f1e' }}>{marquee}</span>
           ))}
         </div>
       </div>
 
       <style>{`
-        @keyframes fadeInUp {
-          from { opacity: 0; transform: translateY(40px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes fadeIn {
-          from { opacity: 0; }
-          to { opacity: 1; }
-        }
-        @media (max-width: 767px) {
-          section#hero > div:nth-child(4) {
-            padding: 0 32px !important;
-          }
-        }
+        @keyframes fadeInUp { from { opacity:0; transform:translateY(36px); } to { opacity:1; transform:translateY(0); } }
+        @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+        @media (max-width: 600px) { #hero > div:nth-child(5) { padding: 0 28px !important; } }
       `}</style>
     </section>
   )
