@@ -19,7 +19,7 @@ export default function Education() {
           {/* Image */}
           <div className="img-overlay" style={{ height: 420, position: 'relative' }}>
             <img
-              src="https://images.unsplash.com/photo-1607237138185-eedd9c632b0b?w=800&q=80"
+              src="https://images.unsplash.com/photo-1562774053-701939374585?w=800&q=80"
               alt="Merrimack College campus"
               style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
             />

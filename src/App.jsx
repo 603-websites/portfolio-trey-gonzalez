@@ -34,8 +34,8 @@ function App() {
     <div style={{ minHeight: '100vh', background: '#0a0f1e' }}>
       <Nav />
       <Hero />
-      <Highlights />
       <About />
+      <Highlights />
       <Experience />
       <Education />
       <Athletics />

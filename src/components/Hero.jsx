@@ -11,9 +11,12 @@ const cyclingWords = [
   'PROBLEM SOLVER',
 ]
 
+const bgPhotos = ['/trey-running-2.jpeg', '/trey-headshot.jpeg']
+
 export default function Hero() {
   const [wordIndex, setWordIndex] = useState(0)
   const [visible, setVisible] = useState(true)
+  const [bgIndex, setBgIndex] = useState(0)
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -26,14 +29,30 @@ export default function Hero() {
     return () => clearInterval(interval)
   }, [])
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setBgIndex((i) => (i + 1) % bgPhotos.length)
+    }, 6000)
+    return () => clearInterval(interval)
+  }, [])
+
   const marquee = 'TAX ASSOCIATE · CPA CANDIDATE · MERRIMACK COLLEGE · PKF O\'CONNOR DAVIES · CROSS COUNTRY · TRACK & FIELD · WINDHAM NH · '
 
   return (
     <section id="hero" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', position: 'relative', overflow: 'hidden' }}>
 
-      {/* Background photo */}
-      <div style={{ position: 'absolute', inset: 0, backgroundImage: 'url(/trey-running-2.jpeg)', backgroundSize: 'cover', backgroundPosition: 'center 30%' }} />
-      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(110deg, rgba(10,15,30,0.96) 0%, rgba(10,15,30,0.78) 55%, rgba(10,15,30,0.88) 100%)' }} />
+      {/* Crossfading background photos */}
+      {bgPhotos.map((src, i) => (
+        <div key={src} style={{
+          position: 'absolute', inset: 0,
+          backgroundImage: `url(${src})`,
+          backgroundSize: 'cover',
+          backgroundPosition: i === 1 ? 'center top' : 'center 30%',
+          opacity: bgIndex === i ? 1 : 0,
+          transition: 'opacity 2s ease-in-out',
+        }} />
+      ))}
+      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(110deg, rgba(10,15,30,0.92) 0%, rgba(10,15,30,0.72) 55%, rgba(10,15,30,0.85) 100%)' }} />
 
       {/* Floating orbs */}
       <div className="orb" style={{ width: 600, height: 600, background: '#C9A84C', top: '-200px', right: '-100px' }} />

@@ -66,7 +66,7 @@ export default function About() {
         {/* Image strip: college + office */}
         <div className="reveal" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 16, marginTop: 80 }}>
           {[
-            { src: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=600&q=80', label: 'Merrimack College', sub: 'North Andover, MA' },
+            { src: 'https://images.unsplash.com/photo-1562774053-701939374585?w=600&q=80', label: 'Merrimack College', sub: 'North Andover, MA' },
             { src: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&q=80', label: 'Tax & Accounting', sub: 'PKF O\'Connor Davies' },
             { src: '/trey-running-1.jpeg', label: 'Division I Athletics', sub: 'Cross Country · Track' },
           ].map((img) => (

@@ -84,15 +84,10 @@ export default function Highlights() {
                   transition: 'max-height 0.5s cubic-bezier(0.16,1,0.3,1)',
                 }}
               >
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: 32, padding: '20px 0 32px 40px', alignItems: 'start' }}>
-                  <p style={{ fontSize: 15, lineHeight: 1.9, color: 'rgba(255,255,255,0.6)', maxWidth: 600 }}>
+                <div style={{ padding: '20px 0 32px 40px' }}>
+                  <p style={{ fontSize: 15, lineHeight: 1.9, color: 'rgba(255,255,255,0.6)', maxWidth: 640 }}>
                     {item.detail}
                   </p>
-                  <img
-                    src={item.img}
-                    alt={item.title}
-                    style={{ width: 180, height: 120, objectFit: 'cover', flexShrink: 0, opacity: 0.8 }}
-                  />
                 </div>
               </div>
             </div>
