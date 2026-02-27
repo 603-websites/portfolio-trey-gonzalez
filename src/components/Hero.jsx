@@ -11,12 +11,12 @@ const cyclingWords = [
   'PROBLEM SOLVER',
 ]
 
-const bgPhotos = ['/trey-running-2.jpeg', '/trey-headshot.jpeg']
+const bgPhotos = ['/trey-headshot.jpeg', '/trey-running-2.jpeg']
 
 export default function Hero() {
   const [wordIndex, setWordIndex] = useState(0)
   const [visible, setVisible] = useState(true)
-  const [bgIndex, setBgIndex] = useState(1)
+  const [bgIndex, setBgIndex] = useState(0)
 
   useEffect(() => {
     const interval = setInterval(() => {
