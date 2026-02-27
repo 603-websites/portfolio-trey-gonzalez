@@ -47,7 +47,7 @@ export default function Hero() {
           position: 'absolute', inset: 0,
           backgroundImage: `url(${src})`,
           backgroundSize: 'cover',
-          backgroundPosition: i === 1 ? 'center top' : 'center 30%',
+          backgroundPosition: i === 0 ? 'center top' : '60% 25%',
           opacity: bgIndex === i ? 1 : 0,
           transition: 'opacity 1s ease-in-out',
         }} />
