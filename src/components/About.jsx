@@ -1,93 +1,80 @@
 export default function About() {
   return (
-    <section id="about" style={{ padding: '100px 0 120px', background: '#0a0f1e', position: 'relative', overflow: 'hidden' }}>
+    <section id="about" style={{ padding: '120px 0', background: '#fff', position: 'relative' }}>
 
-      {/* Background orb */}
-      <div className="orb" style={{ width: 500, height: 500, background: '#C9A84C', top: '-100px', right: '-200px', opacity: 0.06 }} />
+      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 80px' }}>
 
-      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 64px' }}>
+        {/* Colin's about layout: left photo, right text, asymmetric */}
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'center' }}>
 
-        {/* Asymmetric layout */}
-        <div style={{ display: 'grid', gridTemplateColumns: '5fr 6fr', gap: 80, alignItems: 'center' }}>
-
-          {/* Image side — overlapping */}
-          <div className="reveal-left" style={{ position: 'relative', paddingBottom: 60 }}>
+          {/* Photo side */}
+          <div className="reveal" style={{ position: 'relative' }}>
             <img
               src="/trey-headshot.jpeg"
               alt="Trey Gonzalez"
-              style={{ width: '100%', height: 520, objectFit: 'cover', objectPosition: 'center top', display: 'block' }}
+              style={{ width: '100%', height: 560, objectFit: 'cover', objectPosition: 'center top', display: 'block' }}
             />
-            {/* Floating stat card */}
-            <div style={{
-              position: 'absolute',
-              bottom: 0,
-              right: -32,
-              background: '#C9A84C',
-              padding: '20px 28px',
-              minWidth: 180,
-            }}>
-              <div style={{ fontFamily: "'Bebas Neue', cursive", fontSize: 42, color: '#0a0f1e', lineHeight: 1 }}>Top 30</div>
-              <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: 2, textTransform: 'uppercase', color: 'rgba(10,15,30,0.65)', marginTop: 4 }}>U.S. CPA Firm</div>
-            </div>
-            {/* Gold line accent */}
-            <div style={{ position: 'absolute', top: 24, left: -24, width: 3, height: 100, background: '#C9A84C' }} />
+            {/* Black accent strip — Colin's minimal framing */}
+            <div style={{ position: 'absolute', top: 24, left: -4, width: 4, height: 80, background: '#111' }} />
+            <div style={{ position: 'absolute', bottom: -1, left: 0, right: 0, height: 4, background: '#111' }} />
           </div>
 
           {/* Text side */}
           <div className="reveal">
-            <span className="section-tag">About Me</span>
-            <div style={{ width: 36, height: 2, background: '#C9A84C', margin: '14px 0 28px' }} />
-            <h2 style={{ fontFamily: "'Bebas Neue', cursive", fontSize: 'clamp(42px, 5vw, 68px)', lineHeight: 1, letterSpacing: 1, marginBottom: 28, color: '#fff' }}>
-              Precision.<br />
-              <span className="gold-text">Integrity.</span><br />
-              Results.
+            {/* Section label — Colin's small caps tag */}
+            <div style={{ fontFamily: "'Montserrat', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: '5px', textTransform: 'uppercase', color: '#999', marginBottom: 18 }}>
+              About
+            </div>
+            <div style={{ width: 32, height: 1, background: '#111', marginBottom: 28 }} />
+
+            <h2 style={{
+              fontFamily: "'Oswald', sans-serif",
+              fontSize: 'clamp(36px, 4.5vw, 58px)',
+              fontWeight: 600,
+              lineHeight: 1.05,
+              letterSpacing: 1,
+              color: '#111',
+              marginBottom: 28,
+              textTransform: 'uppercase',
+            }}>
+              Clarity of<br />numbers.<br />Precision<br />of results.
             </h2>
-            <p style={{ fontSize: 15, lineHeight: 1.95, color: 'rgba(255,255,255,0.6)', marginBottom: 20 }}>
-              I'm a Tax Associate at PKF O'Connor Davies — one of America's Top 30 CPA firms — with a Bachelor of Business Administration from Merrimack College, where I double-concentrated in Accounting and Management.
+
+            <p style={{ fontFamily: "'Open Sans', sans-serif", fontSize: 14.5, lineHeight: 2, color: '#555', marginBottom: 18 }}>
+              I've been in tax and accounting for over 3 years. My philosophy has always been one of precision — precision of analysis and client communication. Achieving compliance requires the discipline of thoroughness.
             </p>
-            <p style={{ fontSize: 15, lineHeight: 1.95, color: 'rgba(255,255,255,0.6)', marginBottom: 20 }}>
-              My work spans individual, corporate, and partnership returns, combined with technical tax research, direct client communication, and process-focused workflow tools like CCH Axcess and ProSystem fx.
+            <p style={{ fontFamily: "'Open Sans', sans-serif", fontSize: 14.5, lineHeight: 2, color: '#555', marginBottom: 18 }}>
+              Self-editing, non-stop learning, and humility are the cornerstones of my practice. My work spans individual, corporate, and partnership returns across PKF O'Connor Davies — one of America's Top 30 CPA firms.
             </p>
-            <p style={{ fontSize: 15, lineHeight: 1.95, color: 'rgba(255,255,255,0.6)', marginBottom: 40 }}>
-              I'm also a former Division I team captain at Merrimack — the same discipline and grit that running 8K races in the rain demands is what I bring to every deadline.
+            <p style={{ fontFamily: "'Open Sans', sans-serif", fontSize: 14.5, lineHeight: 2, color: '#555', marginBottom: 40 }}>
+              Let me help you tell your financial story.
             </p>
 
-            <div style={{ display: 'flex', gap: 40, flexWrap: 'wrap' }}>
-              {[{ num: '3+', label: 'Years in Tax' }, { num: 'D1', label: 'Athlete' }, { num: 'BBA', label: 'Accounting' }].map(s => (
+            {/* Stats row */}
+            <div style={{ display: 'flex', gap: 44, borderTop: '1px solid #e8e8e4', paddingTop: 32 }}>
+              {[
+                { num: '3+', label: 'Years in Tax' },
+                { num: 'D1', label: 'Athlete' },
+                { num: 'Top 30', label: 'CPA Firm' },
+              ].map((s) => (
                 <div key={s.label}>
-                  <div style={{ fontFamily: "'Bebas Neue', cursive", fontSize: 44, color: '#C9A84C', lineHeight: 1 }}>{s.num}</div>
-                  <div style={{ fontSize: 10, letterSpacing: 3, textTransform: 'uppercase', color: 'rgba(255,255,255,0.35)', marginTop: 4 }}>{s.label}</div>
+                  <div style={{ fontFamily: "'Oswald', sans-serif", fontSize: 36, fontWeight: 700, color: '#111', lineHeight: 1 }}>{s.num}</div>
+                  <div style={{ fontFamily: "'Montserrat', sans-serif", fontSize: 9, letterSpacing: 3, textTransform: 'uppercase', color: '#aaa', marginTop: 6 }}>{s.label}</div>
                 </div>
               ))}
             </div>
           </div>
         </div>
 
-        {/* Image strip: college + office */}
-        <div className="reveal" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 16, marginTop: 80 }}>
-          {[
-            { src: 'https://images.unsplash.com/photo-1562774053-701939374585?w=600&q=80', label: 'Merrimack College', sub: 'North Andover, MA' },
-            { src: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&q=80', label: 'Tax & Accounting', sub: 'PKF O\'Connor Davies' },
-            { src: '/trey-running-1.jpeg', label: 'Division I Athletics', sub: 'Cross Country · Track' },
-          ].map((img) => (
-            <div key={img.label} className="img-overlay" style={{ height: 220 }}>
-              <img src={img.src} alt={img.label} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
-              <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '20px 16px 14px', zIndex: 1 }}>
-                <div style={{ fontSize: 13, fontWeight: 600, color: '#fff' }}>{img.label}</div>
-                <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.5)', marginTop: 2 }}>{img.sub}</div>
-              </div>
-            </div>
-          ))}
-        </div>
       </div>
 
       <style>{`
-        @media (max-width: 900px) {
-          #about > div > div:first-of-type { grid-template-columns: 1fr !important; gap: 48px !important; }
-          #about > div > div:first-of-type > div:first-child { padding-bottom: 80px !important; }
-          #about > div > div:last-of-type { grid-template-columns: 1fr !important; }
+        @media (max-width: 850px) {
+          #about .grid-cols { grid-template-columns: 1fr !important; gap: 48px !important; }
         }
-        @media (max-width: 600px) { #about > div { padding: 0 24px !important; } }
+        @media (max-width: 600px) {
+          #about > div { padding: 0 28px !important; }
+        }
       `}</style>
     </section>
   )

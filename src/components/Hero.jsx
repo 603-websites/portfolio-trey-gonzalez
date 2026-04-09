@@ -1,128 +1,177 @@
 import { useState, useEffect } from 'react'
 
-const cyclingWords = [
+const cycling = [
   'TAX ASSOCIATE',
   'CPA CANDIDATE',
-  'TEAM CAPTAIN',
-  'MERRIMACK WARRIOR',
-  'DIVISION I ATHLETE',
-  'FUTURE CPA',
   'ACCOUNTING PROFESSIONAL',
-  'PROBLEM SOLVER',
+  'CREATIVE PROBLEM SOLVER',
+  'DIVISION I ATHLETE',
+  'ORGANISER OF INFORMATION',
+  'STRATEGIC THINKER',
+  'MERRIMACK WARRIOR',
 ]
 
-const bgPhotos = ['/trey-headshot.jpeg', '/trey-running-2.jpeg']
+const marqueeText = 'TAX ASSOCIATE • CPA CANDIDATE • PKF O\'CONNOR DAVIES • MERRIMACK COLLEGE • DIVISION I ATHLETE • WINDHAM NH • '
 
 export default function Hero() {
-  const [wordIndex, setWordIndex] = useState(0)
+  const [idx, setIdx] = useState(0)
   const [visible, setVisible] = useState(true)
-  const [bgIndex, setBgIndex] = useState(0)
 
   useEffect(() => {
-    const interval = setInterval(() => {
+    const iv = setInterval(() => {
       setVisible(false)
       setTimeout(() => {
-        setWordIndex((i) => (i + 1) % cyclingWords.length)
+        setIdx((i) => (i + 1) % cycling.length)
         setVisible(true)
-      }, 400)
-    }, 2800)
-    return () => clearInterval(interval)
+      }, 350)
+    }, 2600)
+    return () => clearInterval(iv)
   }, [])
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setBgIndex((i) => (i + 1) % bgPhotos.length)
-    }, 3000)
-    return () => clearInterval(interval)
-  }, [])
-
-  const marquee = 'TAX ASSOCIATE · CPA CANDIDATE · MERRIMACK COLLEGE · PKF O\'CONNOR DAVIES · CROSS COUNTRY · TRACK & FIELD · WINDHAM NH · '
 
   return (
-    <section id="hero" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', position: 'relative', overflow: 'hidden' }}>
+    <section style={{
+      minHeight: '100vh',
+      background: '#f5f4f0',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      position: 'relative',
+      overflow: 'hidden',
+      paddingTop: 68,
+    }}>
 
-      {/* Crossfading background photos */}
-      {bgPhotos.map((src, i) => (
-        <div key={src} style={{
-          position: 'absolute', inset: 0,
-          backgroundImage: `url(${src})`,
-          backgroundSize: 'cover',
-          backgroundPosition: i === 0 ? 'center top' : '60% 25%',
-          opacity: bgIndex === i ? 1 : 0,
-          transition: 'opacity 1s ease-in-out',
-        }} />
-      ))}
-      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(110deg, rgba(10,15,30,0.92) 0%, rgba(10,15,30,0.72) 55%, rgba(10,15,30,0.85) 100%)' }} />
-
-      {/* Floating orbs */}
-      <div className="orb" style={{ width: 600, height: 600, background: '#C9A84C', top: '-200px', right: '-100px' }} />
-      <div className="orb" style={{ width: 400, height: 400, background: '#1a4a8a', bottom: '100px', left: '-100px' }} />
-
-      {/* Left accent line */}
-      <div style={{ position: 'absolute', top: 0, bottom: 0, left: 32, width: 1, background: 'linear-gradient(to bottom, transparent 0%, rgba(201,168,76,0.4) 50%, transparent 100%)' }} />
+      {/* Subtle texture line on left — Colin's site has a thin vertical accent */}
+      <div style={{ position: 'absolute', top: 0, bottom: 0, left: 0, width: 4, background: '#111' }} />
 
       {/* Main content */}
-      <div style={{ position: 'relative', zIndex: 1, maxWidth: 1200, margin: '0 auto', padding: '0 64px', width: '100%' }}>
-        {/* Label */}
-        <div style={{ animation: 'fadeInUp 0.8s ease forwards', opacity: 0 }}>
-          <span className="section-tag" style={{ display: 'block', marginBottom: 28 }}>
-            Tax Associate · PKF O'Connor Davies, LLP
-          </span>
+      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 80px', width: '100%' }}>
+
+        {/* Label — Colin has a small descriptor above the name */}
+        <div style={{
+          fontFamily: "'Montserrat', sans-serif",
+          fontSize: 11,
+          fontWeight: 600,
+          letterSpacing: '4px',
+          textTransform: 'uppercase',
+          color: '#888',
+          marginBottom: 32,
+          animation: 'fadeUp 0.7s ease forwards',
+          opacity: 0,
+        }}>
+          Tax Associate · PKF O'Connor Davies, LLP
         </div>
 
-        {/* TREY */}
-        <div style={{ animation: 'fadeInUp 0.8s ease 0.1s forwards', opacity: 0 }}>
-          <div style={{ fontFamily: "'Bebas Neue', cursive", fontSize: 'clamp(80px, 13vw, 172px)', lineHeight: 0.88, letterSpacing: '-3px', color: '#ffffff' }}>
+        {/* TREY — large Oswald display */}
+        <div style={{ animation: 'fadeUp 0.7s ease 0.1s forwards', opacity: 0 }}>
+          <div style={{
+            fontFamily: "'Oswald', sans-serif",
+            fontSize: 'clamp(80px, 14vw, 180px)',
+            fontWeight: 700,
+            lineHeight: 0.9,
+            letterSpacing: '-2px',
+            color: '#111',
+            textTransform: 'uppercase',
+          }}>
             TREY
           </div>
         </div>
 
-        {/* Cycling word row */}
-        <div style={{ animation: 'fadeInUp 0.8s ease 0.2s forwards', opacity: 0, height: 'clamp(32px, 4vw, 56px)', display: 'flex', alignItems: 'center', overflow: 'hidden', margin: '8px 0 4px', paddingLeft: 4 }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-            <div style={{ width: 32, height: 1, background: '#C9A84C', flexShrink: 0 }} />
-            <span
-              key={wordIndex}
-              className="cycling-word"
-              style={{
-                fontFamily: "'Bebas Neue', cursive",
-                fontSize: 'clamp(20px, 2.5vw, 36px)',
-                letterSpacing: '6px',
-                color: '#C9A84C',
-                display: 'inline-block',
-                opacity: visible ? 1 : 0,
-                transition: 'opacity 0.4s ease',
-                whiteSpace: 'nowrap',
-              }}
-            >
-              {cyclingWords[wordIndex]}
-            </span>
-            <div style={{ width: 32, height: 1, background: 'rgba(201,168,76,0.3)', flexShrink: 0 }} />
-          </div>
+        {/* Cycling tagline row — Colin's animated descriptor loop */}
+        <div style={{
+          animation: 'fadeUp 0.7s ease 0.2s forwards',
+          opacity: 0,
+          height: 'clamp(24px, 3vw, 40px)',
+          display: 'flex',
+          alignItems: 'center',
+          gap: 14,
+          margin: '10px 0 6px',
+          overflow: 'hidden',
+        }}>
+          <div style={{ width: 28, height: 1, background: '#bbb', flexShrink: 0 }} />
+          <span
+            className="cycling-word"
+            style={{
+              fontFamily: "'Montserrat', sans-serif",
+              fontSize: 'clamp(11px, 1.5vw, 15px)',
+              fontWeight: 600,
+              letterSpacing: '4px',
+              textTransform: 'uppercase',
+              color: '#555',
+              opacity: visible ? 1 : 0,
+              transition: 'opacity 0.35s ease',
+              whiteSpace: 'nowrap',
+            }}
+          >
+            {cycling[idx]}
+          </span>
+          <div style={{ width: 28, height: 1, background: '#ddd', flexShrink: 0 }} />
         </div>
 
-        {/* GONZALEZ */}
-        <div style={{ animation: 'fadeInUp 0.8s ease 0.3s forwards', opacity: 0 }}>
-          <div style={{ fontFamily: "'Bebas Neue', cursive", fontSize: 'clamp(80px, 13vw, 172px)', lineHeight: 0.88, letterSpacing: '-3px', color: 'transparent', WebkitTextStroke: '1.5px rgba(255,255,255,0.18)' }}>
+        {/* GONZALEZ — outlined, Colin style */}
+        <div style={{ animation: 'fadeUp 0.7s ease 0.3s forwards', opacity: 0 }}>
+          <div style={{
+            fontFamily: "'Oswald', sans-serif",
+            fontSize: 'clamp(80px, 14vw, 180px)',
+            fontWeight: 700,
+            lineHeight: 0.9,
+            letterSpacing: '-2px',
+            color: 'transparent',
+            WebkitTextStroke: '1.5px rgba(0,0,0,0.15)',
+            textTransform: 'uppercase',
+          }}>
             GONZALEZ
           </div>
         </div>
 
-        {/* Subline + CTAs */}
-        <div style={{ animation: 'fadeInUp 0.8s ease 0.45s forwards', opacity: 0, marginTop: 48 }}>
-          <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.5)', letterSpacing: 1, marginBottom: 32, maxWidth: 380, lineHeight: 1.8 }}>
+        {/* Subline + CTA */}
+        <div style={{ animation: 'fadeUp 0.7s ease 0.45s forwards', opacity: 0, marginTop: 52 }}>
+          <p style={{
+            fontFamily: "'Open Sans', sans-serif",
+            fontSize: 14,
+            color: '#888',
+            letterSpacing: 0.5,
+            marginBottom: 32,
+            maxWidth: 360,
+            lineHeight: 1.9,
+          }}>
             BBA Accounting & Management · Merrimack College<br />
             Windham, NH
           </p>
-          <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
-            <a href="#highlights" style={{ display: 'inline-block', background: '#C9A84C', color: '#0a0f1e', padding: '14px 36px', fontSize: 11, fontWeight: 700, letterSpacing: '2.5px', textTransform: 'uppercase', textDecoration: 'none', transition: 'all 0.3s ease' }}
-              onMouseEnter={e => { e.target.style.background = '#f0d878'; e.target.style.transform = 'translateY(-3px)' }}
-              onMouseLeave={e => { e.target.style.background = '#C9A84C'; e.target.style.transform = 'translateY(0)' }}>
-              Explore Work
+          <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
+            <a href="#work"
+              style={{
+                fontFamily: "'Montserrat', sans-serif",
+                fontSize: 11,
+                fontWeight: 700,
+                letterSpacing: '2.5px',
+                textTransform: 'uppercase',
+                textDecoration: 'none',
+                color: '#f5f4f0',
+                background: '#111',
+                padding: '14px 36px',
+                transition: 'background 0.25s',
+              }}
+              onMouseEnter={e => e.currentTarget.style.background = '#333'}
+              onMouseLeave={e => e.currentTarget.style.background = '#111'}
+            >
+              View Work
             </a>
-            <a href="#contact" style={{ display: 'inline-block', border: '1px solid rgba(201,168,76,0.4)', color: '#C9A84C', padding: '14px 36px', fontSize: 11, fontWeight: 700, letterSpacing: '2.5px', textTransform: 'uppercase', textDecoration: 'none', transition: 'all 0.3s ease' }}
-              onMouseEnter={e => { e.target.style.background = 'rgba(201,168,76,0.1)'; e.target.style.borderColor = '#C9A84C' }}
-              onMouseLeave={e => { e.target.style.background = 'transparent'; e.target.style.borderColor = 'rgba(201,168,76,0.4)' }}>
+            <a href="#contact"
+              style={{
+                fontFamily: "'Montserrat', sans-serif",
+                fontSize: 11,
+                fontWeight: 700,
+                letterSpacing: '2.5px',
+                textTransform: 'uppercase',
+                textDecoration: 'none',
+                color: '#111',
+                border: '1px solid rgba(0,0,0,0.25)',
+                padding: '14px 36px',
+                transition: 'all 0.25s',
+              }}
+              onMouseEnter={e => { e.currentTarget.style.background = '#111'; e.currentTarget.style.color = '#f5f4f0' }}
+              onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#111' }}
+            >
               Get In Touch
             </a>
           </div>
@@ -130,24 +179,47 @@ export default function Hero() {
       </div>
 
       {/* Scroll indicator */}
-      <div style={{ position: 'absolute', bottom: 100, right: 48, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8, animation: 'fadeIn 1s ease 1.2s forwards', opacity: 0 }}>
-        <span style={{ fontSize: 9, letterSpacing: 4, color: 'rgba(255,255,255,0.3)', textTransform: 'uppercase', writingMode: 'vertical-rl' }}>Scroll</span>
-        <div style={{ width: 1, height: 48, background: 'linear-gradient(to bottom, rgba(201,168,76,0.5), transparent)' }} />
+      <div style={{
+        position: 'absolute',
+        bottom: 80,
+        right: 48,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        gap: 8,
+        animation: 'fadeUp 0.7s ease 1s forwards',
+        opacity: 0,
+      }}>
+        <span style={{ fontFamily: "'Montserrat', sans-serif", fontSize: 8, letterSpacing: 4, color: '#aaa', textTransform: 'uppercase', writingMode: 'vertical-rl' }}>Scroll</span>
+        <div style={{ width: 1, height: 44, background: 'linear-gradient(to bottom, #aaa, transparent)' }} />
       </div>
 
-      {/* Gold marquee strip */}
-      <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, overflow: 'hidden', background: '#C9A84C', padding: '9px 0' }}>
+      {/* Bottom marquee strip — Colin's cycling tagline band */}
+      <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, overflow: 'hidden', background: '#111', padding: '8px 0' }}>
         <div style={{ display: 'flex', whiteSpace: 'nowrap' }} className="animate-marquee">
           {[...Array(6)].map((_, i) => (
-            <span key={i} style={{ fontSize: 10, fontWeight: 700, letterSpacing: '3px', color: '#0a0f1e' }}>{marquee}</span>
+            <span key={i} style={{
+              fontFamily: "'Montserrat', sans-serif",
+              fontSize: 9,
+              fontWeight: 700,
+              letterSpacing: '3px',
+              color: '#f5f4f0',
+              textTransform: 'uppercase',
+            }}>
+              {marqueeText}
+            </span>
           ))}
         </div>
       </div>
 
       <style>{`
-        @keyframes fadeInUp { from { opacity:0; transform:translateY(36px); } to { opacity:1; transform:translateY(0); } }
-        @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
-        @media (max-width: 600px) { #hero > div:nth-child(5) { padding: 0 28px !important; } }
+        @keyframes fadeUp {
+          from { opacity: 0; transform: translateY(28px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        @media (max-width: 600px) {
+          #hero-content { padding: 0 32px !important; }
+        }
       `}</style>
     </section>
   )

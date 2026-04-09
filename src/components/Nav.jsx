@@ -5,115 +5,104 @@ export default function Nav() {
   const [menuOpen, setMenuOpen] = useState(false)
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 60)
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
+    const onScroll = () => setScrolled(window.scrollY > 50)
+    window.addEventListener('scroll', onScroll)
+    return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
   const links = [
     { label: 'About', href: '#about' },
-    { label: 'Experience', href: '#experience' },
-    { label: 'Education', href: '#education' },
-    { label: 'Athletics', href: '#athletics' },
+    { label: 'Work', href: '#work' },
     { label: 'Contact', href: '#contact' },
   ]
 
   return (
-    <nav
-      style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        right: 0,
-        zIndex: 100,
-        transition: 'background 0.4s ease, box-shadow 0.4s ease',
-        background: scrolled ? 'rgba(10, 15, 30, 0.95)' : 'transparent',
-        backdropFilter: scrolled ? 'blur(20px)' : 'none',
-        boxShadow: scrolled ? '0 1px 0 rgba(201, 168, 76, 0.15)' : 'none',
-      }}
-    >
+    <nav style={{
+      position: 'fixed',
+      top: 0, left: 0, right: 0,
+      zIndex: 100,
+      background: scrolled ? 'rgba(245,244,240,0.96)' : 'transparent',
+      backdropFilter: scrolled ? 'blur(12px)' : 'none',
+      borderBottom: scrolled ? '1px solid rgba(0,0,0,0.08)' : 'none',
+      transition: 'all 0.35s ease',
+    }}>
       <div style={{
-        maxWidth: '1200px',
+        maxWidth: 1200,
         margin: '0 auto',
-        padding: '0 32px',
-        height: '72px',
+        padding: '0 40px',
+        height: 68,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
       }}>
-        {/* Logo */}
-        <a href="#" style={{ textDecoration: 'none' }}>
-          <span style={{
-            fontFamily: "'Bebas Neue', cursive",
-            fontSize: '22px',
-            letterSpacing: '4px',
-            color: '#C9A84C',
-          }}>TG</span>
+        {/* Split name logo — Colin's signature style */}
+        <a href="#" style={{ textDecoration: 'none', display: 'flex', alignItems: 'baseline', gap: 6 }}>
+          <span style={{ fontFamily: "'Oswald', sans-serif", fontSize: 20, fontWeight: 700, letterSpacing: '3px', color: '#111', textTransform: 'uppercase' }}>
+            TREY
+          </span>
+          <span style={{ fontFamily: "'Oswald', sans-serif", fontSize: 20, fontWeight: 300, letterSpacing: '3px', color: '#999', textTransform: 'uppercase' }}>
+            GONZALEZ
+          </span>
         </a>
 
-        {/* Desktop Links */}
-        <div style={{ display: 'flex', gap: '40px', alignItems: 'center' }} className="hidden-mobile">
-          {links.map((link) => (
-            <a key={link.label} href={link.href} className="nav-link">
-              {link.label}
-            </a>
+        {/* Desktop links */}
+        <div className="hide-mobile" style={{ display: 'flex', gap: 40, alignItems: 'center' }}>
+          {links.map((l) => (
+            <a key={l.label} href={l.href} className="nav-link">{l.label}</a>
           ))}
+          <a
+            href="mailto:TR3YG@hotmail.com"
+            style={{
+              fontFamily: "'Montserrat', sans-serif",
+              fontSize: 11,
+              fontWeight: 700,
+              letterSpacing: '2px',
+              textTransform: 'uppercase',
+              color: '#f5f4f0',
+              background: '#111',
+              padding: '10px 22px',
+              textDecoration: 'none',
+              transition: 'background 0.25s',
+            }}
+            onMouseEnter={e => e.currentTarget.style.background = '#333'}
+            onMouseLeave={e => e.currentTarget.style.background = '#111'}
+          >
+            Hire Me
+          </a>
         </div>
 
         {/* Hamburger */}
         <button
-          onClick={() => setMenuOpen(!menuOpen)}
-          style={{
-            background: 'none',
-            border: 'none',
-            cursor: 'pointer',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '5px',
-            padding: '4px',
-          }}
           className="show-mobile"
+          onClick={() => setMenuOpen(!menuOpen)}
+          style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 4, display: 'flex', flexDirection: 'column', gap: 5 }}
         >
-          <span style={{ width: '24px', height: '1px', background: menuOpen ? '#C9A84C' : '#ffffff', display: 'block', transition: 'all 0.3s', transform: menuOpen ? 'rotate(45deg) translate(4px, 4px)' : 'none' }} />
-          <span style={{ width: '24px', height: '1px', background: menuOpen ? '#C9A84C' : '#ffffff', display: 'block', transition: 'all 0.3s', opacity: menuOpen ? 0 : 1 }} />
-          <span style={{ width: '24px', height: '1px', background: menuOpen ? '#C9A84C' : '#ffffff', display: 'block', transition: 'all 0.3s', transform: menuOpen ? 'rotate(-45deg) translate(4px, -4px)' : 'none' }} />
+          {[0, 1, 2].map((i) => (
+            <span key={i} style={{
+              display: 'block', width: 22, height: 1, background: '#111',
+              transition: 'all 0.3s',
+              transform: menuOpen && i === 0 ? 'rotate(45deg) translate(4px, 4px)' : menuOpen && i === 2 ? 'rotate(-45deg) translate(4px, -4px)' : 'none',
+              opacity: menuOpen && i === 1 ? 0 : 1,
+            }} />
+          ))}
         </button>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile menu */}
       {menuOpen && (
         <div style={{
-          background: 'rgba(10, 15, 30, 0.98)',
-          padding: '24px 32px',
+          background: 'rgba(245,244,240,0.98)',
+          borderTop: '1px solid rgba(0,0,0,0.08)',
+          padding: '20px 40px 28px',
           display: 'flex',
           flexDirection: 'column',
-          gap: '24px',
-          borderTop: '1px solid rgba(201, 168, 76, 0.2)',
+          gap: 20,
         }}>
-          {links.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              className="nav-link"
-              style={{ fontSize: '14px' }}
-              onClick={() => setMenuOpen(false)}
-            >
-              {link.label}
-            </a>
+          {links.map((l) => (
+            <a key={l.label} href={l.href} className="nav-link" onClick={() => setMenuOpen(false)}>{l.label}</a>
           ))}
         </div>
       )}
-
-      <style>{`
-        @media (min-width: 768px) {
-          .hidden-mobile { display: flex !important; }
-          .show-mobile { display: none !important; }
-        }
-        @media (max-width: 767px) {
-          .hidden-mobile { display: none !important; }
-          .show-mobile { display: flex !important; }
-        }
-      `}</style>
     </nav>
   )
 }

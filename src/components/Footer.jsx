@@ -1,61 +1,50 @@
 export default function Footer() {
   return (
     <footer style={{
-      background: '#080d1a',
-      borderTop: '1px solid rgba(255,255,255,0.06)',
-      padding: '40px 64px',
+      background: '#111',
+      padding: '48px 80px',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      flexWrap: 'wrap',
+      gap: 24,
     }}>
-      <div style={{
-        maxWidth: '1200px',
-        margin: '0 auto',
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        flexWrap: 'wrap',
-        gap: '20px',
-      }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-          <span style={{
-            fontFamily: "'Bebas Neue', cursive",
-            fontSize: '20px',
-            letterSpacing: '4px',
-            color: '#C9A84C',
-          }}>TG</span>
-          <span style={{ fontSize: '12px', color: 'rgba(255,255,255,0.25)', letterSpacing: '1px' }}>
-            Trey Gonzalez · Tax Associate
-          </span>
-        </div>
+      {/* Logo */}
+      <div style={{ display: 'flex', alignItems: 'baseline', gap: 6 }}>
+        <span style={{ fontFamily: "'Oswald', sans-serif", fontSize: 18, fontWeight: 700, letterSpacing: '3px', color: '#fff', textTransform: 'uppercase' }}>TREY</span>
+        <span style={{ fontFamily: "'Oswald', sans-serif", fontSize: 18, fontWeight: 300, letterSpacing: '3px', color: '#555', textTransform: 'uppercase' }}>GONZALEZ</span>
+      </div>
 
-        <div style={{ display: 'flex', gap: '32px', alignItems: 'center', flexWrap: 'wrap' }}>
-          {['#about', '#experience', '#education', '#athletics', '#contact'].map((href) => (
-            <a
-              key={href}
-              href={href}
-              style={{
-                fontSize: '11px',
-                letterSpacing: '2px',
-                textTransform: 'uppercase',
-                color: 'rgba(255,255,255,0.3)',
-                textDecoration: 'none',
-                transition: 'color 0.2s ease',
-              }}
-              onMouseEnter={e => e.target.style.color = '#C9A84C'}
-              onMouseLeave={e => e.target.style.color = 'rgba(255,255,255,0.3)'}
-            >
-              {href.replace('#', '')}
-            </a>
-          ))}
-        </div>
+      {/* Social links — Colin's simple footer links */}
+      <div style={{ display: 'flex', gap: 32, alignItems: 'center' }}>
+        <a
+          href="https://www.linkedin.com/in/trey-gonzalez-475659225"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ fontFamily: "'Montserrat', sans-serif", fontSize: 10, fontWeight: 600, letterSpacing: '2px', textTransform: 'uppercase', color: '#555', textDecoration: 'none', transition: 'color 0.25s' }}
+          onMouseEnter={e => e.currentTarget.style.color = '#fff'}
+          onMouseLeave={e => e.currentTarget.style.color = '#555'}
+        >
+          LinkedIn
+        </a>
+        <a
+          href="mailto:TR3YG@hotmail.com"
+          style={{ fontFamily: "'Montserrat', sans-serif", fontSize: 10, fontWeight: 600, letterSpacing: '2px', textTransform: 'uppercase', color: '#555', textDecoration: 'none', transition: 'color 0.25s' }}
+          onMouseEnter={e => e.currentTarget.style.color = '#fff'}
+          onMouseLeave={e => e.currentTarget.style.color = '#555'}
+        >
+          Email
+        </a>
+      </div>
 
-        <div style={{ fontSize: '11px', color: 'rgba(255,255,255,0.2)', letterSpacing: '1px' }}>
-          © {new Date().getFullYear()} Trey Gonzalez
-        </div>
+      {/* Copyright */}
+      <div style={{ fontFamily: "'Open Sans', sans-serif", fontSize: 11, color: '#444' }}>
+        © {new Date().getFullYear()} Trey Gonzalez
       </div>
 
       <style>{`
         @media (max-width: 600px) {
-          footer { padding: 32px 24px !important; }
-          footer > div { justify-content: center !important; text-align: center; }
+          footer { padding: 36px 24px !important; flex-direction: column; align-items: flex-start; }
         }
       `}</style>
     </footer>
