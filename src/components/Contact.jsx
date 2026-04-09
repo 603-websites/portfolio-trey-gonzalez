@@ -1,98 +1,84 @@
+import { useState } from 'react'
+
 export default function Contact() {
+  const [open, setOpen] = useState(false)
+
   return (
-    <section id="contact" style={{ padding: '120px 0', background: '#fff', position: 'relative', overflow: 'hidden' }}>
-
-      {/* Big background word — Colin's typographic bg element */}
-      <div style={{
-        position: 'absolute',
-        left: '50%',
-        top: '50%',
-        transform: 'translate(-50%,-50%)',
-        fontFamily: "'Oswald', sans-serif",
-        fontSize: 'clamp(100px, 16vw, 200px)',
-        fontWeight: 700,
-        lineHeight: 1,
-        color: 'rgba(0,0,0,0.03)',
-        userSelect: 'none',
-        pointerEvents: 'none',
-        whiteSpace: 'nowrap',
-        textTransform: 'uppercase',
-      }}>
-        CONTACT
-      </div>
-
-      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 80px', position: 'relative' }}>
-
-        {/* Header */}
-        <div className="reveal" style={{ marginBottom: 72 }}>
-          <div style={{ fontFamily: "'Montserrat', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: '5px', textTransform: 'uppercase', color: '#999', marginBottom: 16 }}>
-            Contact
+    <div id="contact" className="h2-section">
+      {/* c[O]ntact — Colin's exact pattern */}
+      <div
+        className="h2-linkblock"
+        onClick={() => setOpen(!open)}
+        style={{ cursor: 'pointer' }}
+      >
+        <h2 className="h2-text">c</h2>
+        <div className="h2-o contact">
+          {/* Yellow "How can I Help?" text inside the O — Colin's exact treatment */}
+          <div style={{
+            color: '#f8cb74',
+            fontFamily: "'Montserrat', sans-serif",
+            fontSize: '14px',
+            fontWeight: 600,
+            letterSpacing: 1,
+            padding: '0 8px',
+            textAlign: 'center',
+            lineHeight: 1.3,
+            opacity: open ? 1 : 0,
+            transition: 'opacity 0.3s',
+          }}>
+            How can I Help?
           </div>
-          <div style={{ width: 32, height: 1, background: '#111', marginBottom: 20 }} />
-          <h2 style={{ fontFamily: "'Oswald', sans-serif", fontSize: 'clamp(52px, 9vw, 110px)', fontWeight: 700, lineHeight: 1, color: '#111', textTransform: 'uppercase', letterSpacing: -1, marginBottom: 20 }}>
-            Get In Touch
-          </h2>
-          <p style={{ fontFamily: "'Open Sans', sans-serif", fontSize: 14.5, color: '#888', maxWidth: 480, lineHeight: 1.9 }}>
-            Whether you're exploring tax services, looking to connect professionally, or just want to reach out — I'd love to hear from you.
-          </p>
         </div>
+        <h2 className="h2-text">ntact</h2>
+      </div>
 
-        {/* 3 contact channels — Colin's card grid */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 2, marginBottom: 48 }}>
-          {[
-            { label: 'Email', value: 'TR3YG@hotmail.com', href: 'mailto:TR3YG@hotmail.com', icon: '✉', detail: 'Preferred method', dark: false },
-            { label: 'Phone', value: '(603) 809-8487', href: 'tel:+16038098487', icon: '☎', detail: 'Windham, NH', dark: true },
-            { label: 'LinkedIn', value: 'Trey Gonzalez', href: 'https://www.linkedin.com/in/trey-gonzalez-475659225', icon: 'in', detail: 'Connect professionally', dark: false },
-          ].map((item, i) => (
-            <a
-              key={i}
-              className="reveal"
-              href={item.href}
-              target={item.href.startsWith('http') ? '_blank' : undefined}
-              rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-              style={{
-                display: 'block',
-                background: item.dark ? '#111' : '#f5f4f0',
-                padding: '52px 36px',
-                textDecoration: 'none',
-                textAlign: 'center',
-                transition: 'transform 0.3s ease',
-                border: item.dark ? 'none' : '1px solid #e8e8e4',
-              }}
-              onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-4px)' }}
-              onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)' }}
-            >
-              <div style={{ fontSize: 26, marginBottom: 18, color: item.dark ? '#f5f4f0' : '#111', fontFamily: item.icon === 'in' ? 'sans-serif' : 'inherit', fontWeight: item.icon === 'in' ? 700 : 'normal' }}>
-                {item.icon}
-              </div>
-              <div style={{ fontFamily: "'Montserrat', sans-serif", fontSize: 9, letterSpacing: '4px', textTransform: 'uppercase', color: item.dark ? 'rgba(255,255,255,0.4)' : '#aaa', marginBottom: 10 }}>
-                {item.label}
-              </div>
-              <div style={{ fontFamily: "'Open Sans', sans-serif", fontSize: 13, fontWeight: 600, color: item.dark ? '#fff' : '#111', marginBottom: 6, wordBreak: 'break-all' }}>
-                {item.value}
-              </div>
-              <div style={{ fontFamily: "'Open Sans', sans-serif", fontSize: 12, color: item.dark ? 'rgba(255,255,255,0.35)' : '#bbb' }}>
-                {item.detail}
-              </div>
-            </a>
-          ))}
-        </div>
-
-        {/* Location bar */}
-        <div className="reveal" style={{ textAlign: 'center', borderTop: '1px solid #e8e8e4', paddingTop: 40 }}>
-          <div style={{ fontFamily: "'Montserrat', sans-serif", fontSize: 9, letterSpacing: '4px', textTransform: 'uppercase', color: '#ccc', marginBottom: 10 }}>Based in</div>
-          <div style={{ fontFamily: "'Open Sans', sans-serif", fontSize: 15, color: '#888' }}>Windham, NH · Open to opportunities</div>
+      {/* Contact info panel — slides down on click */}
+      <div style={{
+        overflow: 'hidden',
+        maxHeight: open ? '300px' : '0',
+        transition: 'max-height 0.6s cubic-bezier(0.16,1,0.3,1)',
+      }}>
+        <div style={{ padding: '20px 20px 10px', fontSize: '16px' }}>
+          <p className="contact-text">Contact me at </p>
+          <a href="mailto:TR3YG@hotmail.com" className="contact-email-link">
+            TR3YG@hotmail.com
+          </a>
+          <p className="contact-text">, or connect on LinkedIn.</p>
         </div>
       </div>
 
-      <style>{`
-        @media (max-width: 700px) {
-          #contact > div > div[style*="repeat(3"] { grid-template-columns: 1fr !important; }
-        }
-        @media (max-width: 600px) {
-          #contact > div { padding: 0 24px !important; }
-        }
-      `}</style>
-    </section>
+      {/* Social icons — Colin's exact footer */}
+      <div className="social-icons-section">
+        <a
+          href="https://www.linkedin.com/in/trey-gonzalez-475659225"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="social-icon-link"
+        >
+          <svg
+            className="social-icon"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+          </svg>
+        </a>
+        <a
+          href="mailto:TR3YG@hotmail.com"
+          className="social-icon-link"
+        >
+          <svg
+            className="social-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+          </svg>
+        </a>
+      </div>
+    </div>
   )
 }

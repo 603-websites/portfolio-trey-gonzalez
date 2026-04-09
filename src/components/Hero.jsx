@@ -1,226 +1,78 @@
-import { useState, useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 
-const cycling = [
-  'TAX ASSOCIATE',
-  'CPA CANDIDATE',
-  'ACCOUNTING PROFESSIONAL',
-  'CREATIVE PROBLEM SOLVER',
-  'DIVISION I ATHLETE',
-  'ORGANISER OF INFORMATION',
-  'STRATEGIC THINKER',
-  'MERRIMACK WARRIOR',
-]
-
-const marqueeText = 'TAX ASSOCIATE • CPA CANDIDATE • PKF O\'CONNOR DAVIES • MERRIMACK COLLEGE • DIVISION I ATHLETE • WINDHAM NH • '
+const marqueeText = 'Tax Associate • CPA Candidate • Merrimack College • PKF O\'Connor Davies • Division I Athlete • Problem Solver • Organiser of Numbers • Strategic Thinker • '
 
 export default function Hero() {
-  const [idx, setIdx] = useState(0)
-  const [visible, setVisible] = useState(true)
+  const treyPupilRef = useRef(null)
+  const gonzalezPupilRef = useRef(null)
 
+  // Eye follows mouse — Colin's signature interaction
   useEffect(() => {
-    const iv = setInterval(() => {
-      setVisible(false)
-      setTimeout(() => {
-        setIdx((i) => (i + 1) % cycling.length)
-        setVisible(true)
-      }, 350)
-    }, 2600)
-    return () => clearInterval(iv)
+    const onMouseMove = (e) => {
+      const move = (pupilEl, eyeEl) => {
+        if (!pupilEl || !eyeEl) return
+        const rect = eyeEl.getBoundingClientRect()
+        const cx = rect.left + rect.width / 2
+        const cy = rect.top + rect.height / 2
+        const dx = e.clientX - cx
+        const dy = e.clientY - cy
+        const dist = Math.sqrt(dx * dx + dy * dy)
+        const maxMove = rect.width * 0.18
+        const scale = Math.min(dist, maxMove) / Math.max(dist, 1)
+        pupilEl.style.transform = `translate(${dx * scale}px, ${dy * scale}px)`
+      }
+      move(treyPupilRef.current, treyPupilRef.current?.parentElement)
+      move(gonzalezPupilRef.current, gonzalezPupilRef.current?.parentElement)
+    }
+    window.addEventListener('mousemove', onMouseMove)
+    return () => window.removeEventListener('mousemove', onMouseMove)
   }, [])
 
   return (
-    <section style={{
-      minHeight: '100vh',
-      background: '#f5f4f0',
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'center',
-      position: 'relative',
-      overflow: 'hidden',
-      paddingTop: 68,
-    }}>
-
-      {/* Subtle texture line on left — Colin's site has a thin vertical accent */}
-      <div style={{ position: 'absolute', top: 0, bottom: 0, left: 0, width: 4, background: '#111' }} />
-
-      {/* Main content */}
-      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 80px', width: '100%' }}>
-
-        {/* Label — Colin has a small descriptor above the name */}
-        <div style={{
-          fontFamily: "'Montserrat', sans-serif",
-          fontSize: 11,
-          fontWeight: 600,
-          letterSpacing: '4px',
-          textTransform: 'uppercase',
-          color: '#888',
-          marginBottom: 32,
-          animation: 'fadeUp 0.7s ease forwards',
-          opacity: 0,
-        }}>
-          Tax Associate · PKF O'Connor Davies, LLP
-        </div>
-
-        {/* TREY — large Oswald display */}
-        <div style={{ animation: 'fadeUp 0.7s ease 0.1s forwards', opacity: 0 }}>
-          <div style={{
-            fontFamily: "'Oswald', sans-serif",
-            fontSize: 'clamp(80px, 14vw, 180px)',
-            fontWeight: 700,
-            lineHeight: 0.9,
-            letterSpacing: '-2px',
-            color: '#111',
-            textTransform: 'uppercase',
-          }}>
-            TREY
+    <>
+      {/* TREY — Colin's "COLIN" equivalent */}
+      <div className="title-container-trey">
+        <div className="title-line">
+          <span className="title-normal-letter">TR</span>
+          {/* "E" gets the eye treatment — closest to Colin's O */}
+          <div className="title-eye-whites">
+            <div className="title-eye-pupil" ref={treyPupilRef} />
           </div>
+          <span className="title-normal-letter">Y</span>
         </div>
+      </div>
 
-        {/* Cycling tagline row — Colin's animated descriptor loop */}
-        <div style={{
-          animation: 'fadeUp 0.7s ease 0.2s forwards',
-          opacity: 0,
-          height: 'clamp(24px, 3vw, 40px)',
-          display: 'flex',
-          alignItems: 'center',
-          gap: 14,
-          margin: '10px 0 6px',
-          overflow: 'hidden',
-        }}>
-          <div style={{ width: 28, height: 1, background: '#bbb', flexShrink: 0 }} />
-          <span
-            className="cycling-word"
-            style={{
-              fontFamily: "'Montserrat', sans-serif",
-              fontSize: 'clamp(11px, 1.5vw, 15px)',
-              fontWeight: 600,
-              letterSpacing: '4px',
-              textTransform: 'uppercase',
-              color: '#555',
-              opacity: visible ? 1 : 0,
-              transition: 'opacity 0.35s ease',
-              whiteSpace: 'nowrap',
-            }}
-          >
-            {cycling[idx]}
-          </span>
-          <div style={{ width: 28, height: 1, background: '#ddd', flexShrink: 0 }} />
-        </div>
-
-        {/* GONZALEZ — outlined, Colin style */}
-        <div style={{ animation: 'fadeUp 0.7s ease 0.3s forwards', opacity: 0 }}>
-          <div style={{
-            fontFamily: "'Oswald', sans-serif",
-            fontSize: 'clamp(80px, 14vw, 180px)',
-            fontWeight: 700,
-            lineHeight: 0.9,
-            letterSpacing: '-2px',
-            color: 'transparent',
-            WebkitTextStroke: '1.5px rgba(0,0,0,0.15)',
-            textTransform: 'uppercase',
-          }}>
-            GONZALEZ
-          </div>
-        </div>
-
-        {/* Subline + CTA */}
-        <div style={{ animation: 'fadeUp 0.7s ease 0.45s forwards', opacity: 0, marginTop: 52 }}>
-          <p style={{
-            fontFamily: "'Open Sans', sans-serif",
-            fontSize: 14,
-            color: '#888',
-            letterSpacing: 0.5,
-            marginBottom: 32,
-            maxWidth: 360,
-            lineHeight: 1.9,
-          }}>
-            BBA Accounting & Management · Merrimack College<br />
-            Windham, NH
-          </p>
-          <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap' }}>
-            <a href="#work"
-              style={{
-                fontFamily: "'Montserrat', sans-serif",
-                fontSize: 11,
-                fontWeight: 700,
-                letterSpacing: '2.5px',
-                textTransform: 'uppercase',
-                textDecoration: 'none',
-                color: '#f5f4f0',
-                background: '#111',
-                padding: '14px 36px',
-                transition: 'background 0.25s',
-              }}
-              onMouseEnter={e => e.currentTarget.style.background = '#333'}
-              onMouseLeave={e => e.currentTarget.style.background = '#111'}
-            >
-              View Work
-            </a>
-            <a href="#contact"
-              style={{
-                fontFamily: "'Montserrat', sans-serif",
-                fontSize: 11,
-                fontWeight: 700,
-                letterSpacing: '2.5px',
-                textTransform: 'uppercase',
-                textDecoration: 'none',
-                color: '#111',
-                border: '1px solid rgba(0,0,0,0.25)',
-                padding: '14px 36px',
-                transition: 'all 0.25s',
-              }}
-              onMouseEnter={e => { e.currentTarget.style.background = '#111'; e.currentTarget.style.color = '#f5f4f0' }}
-              onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#111' }}
-            >
-              Get In Touch
-            </a>
+      {/* Marquee — Colin's black pill with scrolling text */}
+      <div className="marquee-outer">
+        <div className="marquee-box">
+          <div className="marquee-track">
+            {[...Array(4)].map((_, i) => (
+              <span key={i} className="marquee-text">{marqueeText}</span>
+            ))}
           </div>
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <div style={{
-        position: 'absolute',
-        bottom: 80,
-        right: 48,
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        gap: 8,
-        animation: 'fadeUp 0.7s ease 1s forwards',
-        opacity: 0,
-      }}>
-        <span style={{ fontFamily: "'Montserrat', sans-serif", fontSize: 8, letterSpacing: 4, color: '#aaa', textTransform: 'uppercase', writingMode: 'vertical-rl' }}>Scroll</span>
-        <div style={{ width: 1, height: 44, background: 'linear-gradient(to bottom, #aaa, transparent)' }} />
-      </div>
-
-      {/* Bottom marquee strip — Colin's cycling tagline band */}
-      <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, overflow: 'hidden', background: '#111', padding: '8px 0' }}>
-        <div style={{ display: 'flex', whiteSpace: 'nowrap' }} className="animate-marquee">
-          {[...Array(6)].map((_, i) => (
-            <span key={i} style={{
-              fontFamily: "'Montserrat', sans-serif",
-              fontSize: 9,
-              fontWeight: 700,
-              letterSpacing: '3px',
-              color: '#f5f4f0',
-              textTransform: 'uppercase',
-            }}>
-              {marqueeText}
-            </span>
-          ))}
+      {/* GONZALEZ — Colin's "MOY" equivalent */}
+      <div className="title-container-gonzalez">
+        <div className="title-line">
+          <span className="title-normal-letter">G</span>
+          {/* "O" gets the eye treatment */}
+          <div className="title-eye-whites">
+            <div className="title-eye-pupil" ref={gonzalezPupilRef} />
+          </div>
+          <span className="title-normal-letter">NZALEZ</span>
         </div>
       </div>
 
-      <style>{`
-        @keyframes fadeUp {
-          from { opacity: 0; transform: translateY(28px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        @media (max-width: 600px) {
-          #hero-content { padding: 0 32px !important; }
-        }
-      `}</style>
-    </section>
+      {/* Scroll down arrow — Colin's scroll indicator */}
+      <div className="scroll-block">
+        <a href="#about">
+          <svg className="scroll-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+          </svg>
+        </a>
+      </div>
+    </>
   )
 }
