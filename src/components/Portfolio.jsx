@@ -49,14 +49,24 @@ export default function Portfolio() {
 
   return (
     <div id="portfolio" className="h2-section">
-      {/* PORTF[O]LIO heading — clicking reveals the work grid */}
+      {/* PORTF[O]LIO heading - clicking reveals the work grid */}
       <div
         className="h2-linkblock"
+        role="button"
+        tabIndex={0}
+        aria-expanded={open}
+        aria-label="Toggle portfolio work grid"
         onClick={() => setOpen(!open)}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault()
+            setOpen(!open)
+          }
+        }}
         style={{ cursor: 'pointer' }}
       >
         <h2 className="h2-text">Portf</h2>
-        {/* O circle — white with black pupil (Colin's "work" O style) */}
+        {/* O circle - white with black pupil (Colin's "work" O style) */}
         <div className="h2-o work">
           <div style={{
             color: '#000',
@@ -72,7 +82,7 @@ export default function Portfolio() {
         <h2 className="h2-text">lio</h2>
       </div>
 
-      {/* Pill card grid — exactly Colin's horizontal pill layout */}
+      {/* Pill card grid - exactly Colin's horizontal pill layout */}
       <div
         style={{
           overflow: 'hidden',

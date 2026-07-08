@@ -1,4 +1,4 @@
-// Work.jsx — Colin Moy's portfolio grid style, Trey's career case studies
+// Work.jsx - Colin Moy's portfolio grid style, Trey's career case studies
 
 const cases = [
   {
@@ -39,7 +39,7 @@ const cases = [
   },
   {
     num: '05',
-    title: 'BBA — Accounting & Management',
+    title: 'BBA - Accounting & Management',
     sub: 'Merrimack College',
     tag: 'Education',
     period: '2021 – 2025',
@@ -81,7 +81,7 @@ export default function Work() {
 
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 80px' }}>
 
-        {/* Section header — Colin's minimal label + large Oswald heading */}
+        {/* Section header - Colin's minimal label + large Oswald heading */}
         <div className="reveal" style={{ marginBottom: 64 }}>
           <div style={{ fontFamily: "'Montserrat', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: '5px', textTransform: 'uppercase', color: '#999', marginBottom: 16 }}>
             Portfolio
@@ -92,7 +92,7 @@ export default function Work() {
           </h2>
         </div>
 
-        {/* Colin's portfolio grid — 2 columns, image cards with dark overlay + text */}
+        {/* Colin's portfolio grid - 2 columns, image cards with dark overlay + text */}
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 3 }}>
           {cases.map((c, i) => (
             <div

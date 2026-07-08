@@ -18,7 +18,7 @@ export default function AISection() {
 
         {/* Split layout */}
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 0, marginBottom: 32 }}>
-          {/* Left — full image */}
+          {/* Left - full image */}
           <div className="img-overlay reveal-left" style={{ minHeight: 460 }}>
             <img
               src="https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=800&q=80"
@@ -32,7 +32,7 @@ export default function AISection() {
             </div>
           </div>
 
-          {/* Right — text */}
+          {/* Right - text */}
           <div className="reveal-right" style={{ background: '#111827', padding: '52px 48px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
             <h3 style={{ fontFamily: "'Bebas Neue', cursive", fontSize: 32, letterSpacing: 1, color: '#fff', marginBottom: 24, lineHeight: 1 }}>
               The Future of<br />Accounting Is AI
@@ -41,7 +41,7 @@ export default function AISection() {
               While AI isn't on my resume yet, it's where I'm investing my personal time. The accountants who thrive in the next decade will be those who understand both the numbers and the technology that powers them.
             </p>
             <p style={{ fontSize: 15, lineHeight: 1.9, color: 'rgba(255,255,255,0.6)', marginBottom: 32 }}>
-              I'm actively exploring how AI tools can reduce manual effort in tax preparation, improve research accuracy, and create better client outcomes — not to replace human judgment, but to amplify it.
+              I'm actively exploring how AI tools can reduce manual effort in tax preparation, improve research accuracy, and create better client outcomes, not to replace human judgment, but to amplify it.
             </p>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
               <div style={{ width: 8, height: 8, background: '#C9A84C', borderRadius: '50%', animation: 'pulse 2s infinite' }} />
@@ -53,7 +53,7 @@ export default function AISection() {
         {/* 4 horizontal capability strips */}
         <div className="reveal">
           {[
-            { title: 'Language Models', desc: 'ChatGPT, Claude — for tax research, client drafts, regulatory summaries' },
+            { title: 'Language Models', desc: 'ChatGPT, Claude, for tax research, client drafts, regulatory summaries' },
             { title: 'AI in Tax Workflows', desc: 'Exploring AI integrations in CCH and ProSystem fx to cut prep time' },
             { title: 'Data Analysis', desc: 'AI-powered Excel tools and pattern recognition across financial datasets' },
             { title: 'Prompt Engineering', desc: 'Crafting precise prompts for accurate, actionable outputs in professional contexts' },

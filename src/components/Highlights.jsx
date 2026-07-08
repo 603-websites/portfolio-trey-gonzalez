@@ -5,7 +5,7 @@ const items = [
     title: 'Individual & Corporate Tax Returns',
     tag: 'Tax Compliance',
     img: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400&q=80',
-    detail: 'Prepare and review Forms 1040, 1120, 1120S, and 1065 for a diverse client base at PKF O\'Connor Davies — one of America\'s top 30 CPA firms. Leveraging CCH Axcess, ProSystem fx, SurePrep, and BNA Income Tax Planner for end-to-end workflow.',
+    detail: 'Prepare and review Forms 1040, 1120, 1120S, and 1065 for a diverse client base at PKF O\'Connor Davies, one of America\'s top 30 CPA firms. Leveraging CCH Axcess, ProSystem fx, SurePrep, and BNA Income Tax Planner for end-to-end workflow.',
   },
   {
     title: 'IRS & State Tax Research',
@@ -23,13 +23,13 @@ const items = [
     title: 'Team Leadership & Captaincy',
     tag: 'Leadership',
     img: '/trey-running-1.jpeg',
-    detail: 'Served as team captain for the Merrimack College Division I Cross Country & Track program (2024–25) and previously at Windham High School. Led by example, organized team events, and mentored teammates — bringing that same drive to the office.',
+    detail: 'Served as team captain for the Merrimack College Division I Cross Country & Track program (2024–25) and previously at Windham High School. Led by example, organized team events, and mentored teammates, bringing that same drive to the office.',
   },
   {
     title: 'AI in Accounting Workflows',
     tag: 'Innovation',
     img: 'https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=400&q=80',
-    detail: 'Actively learning how AI tools — from ChatGPT and Claude to AI-integrated tax platforms — can enhance accuracy, reduce manual effort, and create better outcomes for clients. Exploring the intersection of accounting expertise and emerging technology.',
+    detail: 'Actively learning how AI tools, from ChatGPT and Claude to AI-integrated tax platforms, can enhance accuracy, reduce manual effort, and create better outcomes for clients. Exploring the intersection of accounting expertise and emerging technology.',
   },
 ]
 

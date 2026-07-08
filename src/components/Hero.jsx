@@ -6,7 +6,7 @@ export default function Hero() {
   const treyPupilRef = useRef(null)
   const gonzalezPupilRef = useRef(null)
 
-  // Eye follows mouse — Colin's signature interaction
+  // Eye follows mouse - Colin's signature interaction
   useEffect(() => {
     const onMouseMove = (e) => {
       const move = (pupilEl, eyeEl) => {
@@ -30,11 +30,12 @@ export default function Hero() {
 
   return (
     <>
-      {/* TREY — Colin's "COLIN" equivalent */}
+      <h1 className="sr-only">Trey Gonzalez, Tax Associate at PKF O'Connor Davies</h1>
+      {/* TREY - Colin's "COLIN" equivalent */}
       <div className="title-container-trey">
         <div className="title-line">
           <span className="title-normal-letter">TR</span>
-          {/* "E" gets the eye treatment — closest to Colin's O */}
+          {/* "E" gets the eye treatment - closest to Colin's O */}
           <div className="title-eye-whites">
             <div className="title-eye-pupil" ref={treyPupilRef} />
           </div>
@@ -42,7 +43,7 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Marquee — Colin's black pill with scrolling text */}
+      {/* Marquee - Colin's black pill with scrolling text */}
       <div className="marquee-outer">
         <div className="marquee-box">
           <div className="marquee-track">
@@ -53,7 +54,7 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* GONZALEZ — Colin's "MOY" equivalent */}
+      {/* GONZALEZ - Colin's "MOY" equivalent */}
       <div className="title-container-gonzalez">
         <div className="title-line">
           <span className="title-normal-letter">G</span>
@@ -65,7 +66,7 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Scroll down arrow — Colin's scroll indicator */}
+      {/* Scroll down arrow - Colin's scroll indicator */}
       <div className="scroll-block">
         <a href="#about">
           <svg className="scroll-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">

@@ -45,17 +45,17 @@ export default function Education() {
               <div style={{ fontSize: 10, letterSpacing: 3, textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: 12 }}>Involvement</div>
               <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
                 <div style={{ width: 5, height: 5, background: '#C9A84C', borderRadius: '50%' }} />
-                <span style={{ fontSize: 14, color: 'rgba(255,255,255,0.6)' }}>Accounting Club — Networked with regional firms</span>
+                <span style={{ fontSize: 14, color: 'rgba(255,255,255,0.6)' }}>Accounting Club - Networked with regional firms</span>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginTop: 8 }}>
                 <div style={{ width: 5, height: 5, background: 'rgba(201,168,76,0.5)', borderRadius: '50%' }} />
-                <span style={{ fontSize: 14, color: 'rgba(255,255,255,0.6)' }}>Division I Cross Country & Track — Captain</span>
+                <span style={{ fontSize: 14, color: 'rgba(255,255,255,0.6)' }}>Division I Cross Country & Track - Captain</span>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Windham HS — smaller card */}
+        {/* Windham HS - smaller card */}
         <div className="reveal" style={{ display: 'grid', gridTemplateColumns: '1fr 3fr', overflow: 'hidden' }}>
           <div className="img-overlay" style={{ height: 200 }}>
             <img
