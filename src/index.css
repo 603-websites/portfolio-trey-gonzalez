@@ -1,4 +1,4 @@
-/* ── Colin Moy exact design — rebuilt for Trey Gonzalez ── */
+/* ── Colin Moy exact design - rebuilt for Trey Gonzalez ── */
 
 :root {
   --yellow: #f8cb74;
@@ -7,6 +7,26 @@
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* Screen-reader-only: visible to assistive tech, hidden visually */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Keyboard focus visibility for click-to-reveal blocks */
+.h2-linkblock:focus-visible {
+  outline: 3px solid var(--black);
+  outline-offset: 4px;
+  border-radius: 8px;
+}
 
 html { scroll-behavior: smooth; }
 
@@ -20,7 +40,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* ── Title letters — exact Colin style ── */
+/* ── Title letters - exact Colin style ── */
 .title-line {
   display: flex;
   flex-direction: row;
@@ -86,7 +106,7 @@ body {
   min-height: 150px;
 }
 
-/* ── Marquee strip — black pill ── */
+/* ── Marquee strip - black pill ── */
 .marquee-outer {
   display: flex;
   flex-direction: row;
@@ -140,7 +160,7 @@ body {
   min-height: 60px;
 }
 
-/* ── Section headings — "AB[O]UT" style ── */
+/* ── Section headings - "AB[O]UT" style ── */
 .h2-section {
   overflow: hidden;
 }

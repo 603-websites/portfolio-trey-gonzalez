@@ -30,7 +30,7 @@ export default function Skills() {
           </h2>
         </div>
 
-        {/* Skill clouds — one per category */}
+        {/* Skill clouds - one per category */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 40 }}>
           {groups.map((g) => (
             <div key={g.cat} className="reveal">

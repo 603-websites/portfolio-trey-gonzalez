@@ -35,7 +35,7 @@ export default function Nav() {
         alignItems: 'center',
         justifyContent: 'space-between',
       }}>
-        {/* Split name logo — Colin's signature style */}
+        {/* Split name logo - Colin's signature style */}
         <a href="#" style={{ textDecoration: 'none', display: 'flex', alignItems: 'baseline', gap: 6 }}>
           <span style={{ fontFamily: "'Oswald', sans-serif", fontSize: 20, fontWeight: 700, letterSpacing: '3px', color: '#111', textTransform: 'uppercase' }}>
             TREY

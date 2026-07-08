@@ -5,15 +5,25 @@ export default function Contact() {
 
   return (
     <div id="contact" className="h2-section">
-      {/* c[O]ntact — Colin's exact pattern */}
+      {/* c[O]ntact - Colin's exact pattern */}
       <div
         className="h2-linkblock"
+        role="button"
+        tabIndex={0}
+        aria-expanded={open}
+        aria-label="Toggle contact details"
         onClick={() => setOpen(!open)}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault()
+            setOpen(!open)
+          }
+        }}
         style={{ cursor: 'pointer' }}
       >
         <h2 className="h2-text">c</h2>
         <div className="h2-o contact">
-          {/* Yellow "How can I Help?" text inside the O — Colin's exact treatment */}
+          {/* Yellow "How can I Help?" text inside the O - Colin's exact treatment */}
           <div style={{
             color: '#f8cb74',
             fontFamily: "'Montserrat', sans-serif",
@@ -32,7 +42,7 @@ export default function Contact() {
         <h2 className="h2-text">ntact</h2>
       </div>
 
-      {/* Contact info panel — slides down on click */}
+      {/* Contact info panel - slides down on click */}
       <div style={{
         overflow: 'hidden',
         maxHeight: open ? '300px' : '0',
@@ -47,7 +57,7 @@ export default function Contact() {
         </div>
       </div>
 
-      {/* Social icons — Colin's exact footer */}
+      {/* Social icons - Colin's exact footer */}
       <div className="social-icons-section">
         <a
           href="https://www.linkedin.com/in/trey-gonzalez-475659225"

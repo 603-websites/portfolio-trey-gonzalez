@@ -24,7 +24,7 @@ export default function Athletics() {
             </div>
           </div>
 
-          {/* Top right — Merrimack athletics */}
+          {/* Top right - Merrimack athletics */}
           <div className="img-overlay" style={{ position: 'relative', minHeight: 270 }}>
             <img
               src="https://images.unsplash.com/photo-1571008887538-b36bb32f4571?w=700&q=80"
@@ -37,7 +37,7 @@ export default function Athletics() {
             </div>
           </div>
 
-          {/* Bottom right — stats card */}
+          {/* Bottom right - stats card */}
           <div style={{ background: 'linear-gradient(135deg, #111827, #0f1720)', padding: '32px 36px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
             <div style={{ fontSize: 10, letterSpacing: 3, textTransform: 'uppercase', color: '#C9A84C', marginBottom: 20 }}>Merrimack Warriors</div>
             <div style={{ display: 'flex', gap: 32, marginBottom: 24, flexWrap: 'wrap' }}>
@@ -49,7 +49,7 @@ export default function Athletics() {
               ))}
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-              {['3-season varsity athlete (XC + indoor + outdoor)', 'Team Captain — 2024–2025', 'HAAC Conference competitor'].map((t, i) => (
+              {['3-season varsity athlete (XC + indoor + outdoor)', 'Team Captain - 2024–2025', 'HAAC Conference competitor'].map((t, i) => (
                 <div key={i} style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
                   <span style={{ color: '#C9A84C', fontSize: 11, flexShrink: 0, marginTop: 2 }}>→</span>
                   <span style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)', lineHeight: 1.6 }}>{t}</span>
@@ -64,7 +64,7 @@ export default function Athletics() {
           <div style={{ background: 'rgba(201,168,76,0.07)', padding: '52px 56px', display: 'flex', flexDirection: 'column', justifyContent: 'center', borderLeft: '3px solid #C9A84C' }}>
             <div style={{ fontSize: 80, lineHeight: 0.7, color: 'rgba(201,168,76,0.2)', fontFamily: 'serif', marginBottom: 24 }}>"</div>
             <p style={{ fontFamily: "'Playfair Display', serif", fontStyle: 'italic', fontSize: 20, lineHeight: 1.7, color: 'rgba(255,255,255,0.75)', marginBottom: 24 }}>
-              Being a team captain taught me that leadership isn't about being the loudest in the room — it's about earning trust through consistent effort and showing up every single day.
+              Being a team captain taught me that leadership isn't about being the loudest in the room. It's about earning trust through consistent effort and showing up every single day.
             </p>
             <div style={{ fontSize: 10, letterSpacing: 4, textTransform: 'uppercase', color: '#C9A84C' }}>Trey Gonzalez</div>
           </div>
