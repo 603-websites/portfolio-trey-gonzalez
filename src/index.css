@@ -337,10 +337,89 @@ body {
   padding: 10px;
 }
 
+/* ── Accessibility statement section ── */
+.a11y-section {
+  padding: 40px 20px 10px;
+}
+
+.a11y-heading {
+  color: var(--black);
+  letter-spacing: -3px;
+  font-family: 'Anton', sans-serif;
+  font-size: 90px;
+  line-height: 1em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+.a11y-card {
+  background-color: var(--black);
+  color: var(--white);
+  border-radius: 2em;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 40px 44px;
+  text-align: left;
+}
+
+.a11y-text {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
+  line-height: 24px;
+  margin-bottom: 16px;
+}
+
+.a11y-text:last-child {
+  margin-bottom: 0;
+}
+
+.a11y-link {
+  color: var(--yellow);
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.a11y-link:hover {
+  text-decoration: none;
+}
+
+/* ── Footer ── */
+.site-footer {
+  padding-top: 10px;
+}
+
+.footer-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 10px;
+}
+
+.footer-link {
+  color: var(--black);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s;
+}
+
+.footer-link:hover {
+  border-bottom-color: var(--black);
+}
+
+.footer-link:focus-visible {
+  outline: 3px solid var(--black);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
 /* ── Footer copyright ── */
 .footer-copyright {
   text-align: center;
-  padding: 30px;
+  padding: 20px 30px 30px;
   font-size: 13px;
   color: rgba(0,0,0,0.5);
 }
@@ -367,6 +446,8 @@ body {
   .portfolio-pill:hover { width: 60vw; }
   .about-inner-text { padding: 40px 28px; }
   .marquee-text { font-size: 1em; }
+  .a11y-heading { font-size: 56px; }
+  .a11y-card { padding: 32px 28px; }
 }
 
 @media (max-width: 480px) {
@@ -375,4 +456,17 @@ body {
   .h2-o { width: 2.5em; height: 2.5em; }
   .portfolio-pill { width: 60px; height: 45vh; margin: 5px; }
   .portfolio-pill:hover { width: 70vw; }
+  .a11y-heading { font-size: 40px; }
+}
+
+/* ── Respect the visitor's reduce-motion preference ── */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
 }
