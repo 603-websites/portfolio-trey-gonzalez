@@ -60,7 +60,17 @@ export default function Highlights() {
             <div key={i}>
               <div
                 className="highlights-row reveal"
+                role="button"
+                tabIndex={0}
+                aria-expanded={open === i}
+                aria-controls={`highlight-panel-${i}`}
                 onClick={() => setOpen(open === i ? null : i)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault()
+                    setOpen(open === i ? null : i)
+                  }
+                }}
                 style={{ paddingBottom: open === i ? 12 : 28 }}
               >
                 <span className="hl-number">0{i + 1}</span>
@@ -77,6 +87,7 @@ export default function Highlights() {
 
               {/* Expandable content */}
               <div
+                id={`highlight-panel-${i}`}
                 className="expand-panel"
                 style={{
                   maxHeight: open === i ? 300 : 0,
